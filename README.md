@@ -2,40 +2,6 @@
 
 This is the backend API for the Kriscent Assignment. It provides routes for user authentication, authorization, and book management. The project uses Node.js, Express, Mongoose, JWT, and Swagger for API documentation.
 
-## Project Structure
-backend/
-│
-├── config/
-│   └── db.js
-├── controllers/
-│   ├── user.controller.js
-│   └── book.controller.js
-├── logs/
-│   ├── requests.log
-├── middlewares/
-│   ├── authentication.middleware.js
-│   ├── authorization.middleware.js
-│   ├── requestLogger.middleware.js
-│   ├── validation.middleware.js
-│   └── validateObjectId.middleware.js
-├── models/
-│   ├── user.model.js
-│   └── book.model.js
-├── routes/
-│   ├── index.js
-│   ├── user.route.js
-│   └── book.route.js
-├── swagger/
-│   ├── swagger.js
-│   ├── user.js
-│   └── book.js
-├── .gitignore
-├── index.js
-├── package.lock.json
-└── package.json
-
-
-
 ## API Reference
 
 ### SWAGGER_DOCS
