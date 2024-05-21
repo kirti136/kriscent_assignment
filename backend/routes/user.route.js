@@ -6,7 +6,7 @@ const {
   loginValidationRules,
   validate,
 } = require("../middlewares/validation.middleware");
-const { verifyToken } = require("../middlewares/validation.middleware");
+const { verifyToken } = require("../middlewares//authentication.middleware");
 
 // Register route
 router.post(
@@ -20,9 +20,9 @@ router.post(
 router.post("/login", loginValidationRules(), validate, userController.login);
 
 // Logout route
-router.post("/logout", userController.logout);
+router.post("/logout", verifyToken, userController.logout);
 
 // Get all users route
-router.get("/", userController.getAllUsers);
+router.get("/", verifyToken, userController.getAllUsers);
 
 module.exports = router;
