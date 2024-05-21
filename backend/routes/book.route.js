@@ -7,6 +7,7 @@ const {
 } = require("../middlewares/validation.middleware");
 const { verifyToken } = require("../middlewares/authentication.middleware");
 const { authorizeRoles } = require("../middlewares/authorization.middleware");
+const validateObjectId = require("../middlewares/validateObjectId.middleware");
 
 // Create a book route
 router.post(
@@ -22,6 +23,7 @@ router.post(
 router.put(
   "/:id",
   verifyToken,
+  validateObjectId,
   authorizeRoles("Admin", "Author"),
   bookController.updateBook
 );
@@ -30,6 +32,7 @@ router.put(
 router.delete(
   "/:id",
   verifyToken,
+  validateObjectId,
   authorizeRoles("Admin"),
   bookController.deleteBook
 );
@@ -38,6 +41,6 @@ router.delete(
 router.get("/", verifyToken, bookController.getAllBooks);
 
 // Get a single book route
-router.get("/:id", verifyToken, bookController.getBookById);
+router.get("/:id", verifyToken, validateObjectId, bookController.getBookById);
 
 module.exports = router;
