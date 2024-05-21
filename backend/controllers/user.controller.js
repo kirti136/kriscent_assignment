@@ -5,7 +5,7 @@ const { UserModel } = require("../models/user.model");
 
 exports.register = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, role } = req.body;
 
     // Check if the user already exists
     const existingUser = await UserModel.findOne({ email });
@@ -19,11 +19,12 @@ exports.register = async (req, res) => {
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a new user
+    // Create a new user with role if provided
     const newUser = new UserModel({
       username,
       email,
       password: hashedPassword,
+      role: role || "Reader",
     });
     await newUser.save();
 
@@ -36,7 +37,7 @@ exports.register = async (req, res) => {
     console.error(error);
     res.status(500).json({
       success: false,
-      message: "Internal Server Error",
+      message: "Error Registering User",
     });
   }
 };
@@ -81,7 +82,7 @@ exports.login = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, message: "Internal Server Error" });
+    res.status(500).json({ success: false, message: "Error Logging User" });
   }
 };
 
@@ -90,21 +91,23 @@ exports.logout = (req, res) => {
     res.clearCookie("token");
 
     res.status(200).json({
-      success: false,
+      success: true,
       message: "Logged out successfully",
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: true, message: "Internal Server Error" });
+    res.status(500).json({ success: false, message: "Cannot Logout User" });
   }
 };
 
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await UserModel.findAll();
-    res.status(200).json({ data: users });
+    const users = await UserModel.find();
+    res.status(200).json({ success: true, data: users });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: true, message: "Internal Server Error" });
+    res
+      .status(500)
+      .json({ success: false, message: "Error getting User data" });
   }
 };
