@@ -22,7 +22,7 @@ const verifyToken = (req, res, next) => {
 
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    console.log(payload);
+    // console.log(payload);
     req.user = payload;
     next();
   } catch (error) {
