@@ -1,14 +1,14 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const { UserModel } = require("../models/user.model");
+const User = require("../models/user.model");
 
 exports.register = async (req, res) => {
   try {
     const { username, email, password, role } = req.body;
 
     // Check if the user already exists
-    const existingUser = await UserModel.findOne({ email });
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({
         success: false,
@@ -20,7 +20,7 @@ exports.register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create a new user with role if provided
-    const newUser = new UserModel({
+    const newUser = new User({
       username,
       email,
       password: hashedPassword,
@@ -47,7 +47,7 @@ exports.login = async (req, res) => {
     const { email, password } = req.body;
 
     // Check if the user exists
-    const user = await UserModel.findOne({ email });
+    const user = await User.findOne({ email });
     if (!user) {
       return res
         .status(400)
@@ -102,7 +102,7 @@ exports.logout = (req, res) => {
 
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await UserModel.find();
+    const users = await User.find();
     res.status(200).json({ success: true, data: users });
   } catch (error) {
     console.error(error);
