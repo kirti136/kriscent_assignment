@@ -7,6 +7,7 @@ const {
   validate,
 } = require("../middlewares/validation.middleware");
 const { verifyToken } = require("../middlewares//authentication.middleware");
+const { authorizeRoles } = require("../middlewares/authorization.middleware");
 
 // Register route
 router.post(
@@ -23,6 +24,11 @@ router.post("/login", loginValidationRules(), validate, userController.login);
 router.post("/logout", verifyToken, userController.logout);
 
 // Get all users route
-router.get("/", verifyToken, userController.getAllUsers);
+router.get(
+  "/",
+  verifyToken,
+  authorizeRoles("Admin"),
+  userController.getAllUsers
+);
 
 module.exports = router;
