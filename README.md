@@ -1,6 +1,43 @@
+
 # Kriscent Assignment Backend
 
 This is the backend API for the Kriscent Assignment. It provides routes for user authentication, authorization, and book management. The project uses Node.js, Express, Mongoose, JWT, and Swagger for API documentation.
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/kirti136/kriscent_assignment.git
+```
+
+Go to the project directory
+
+```bash
+  cd backend
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start or npm start
+```
+
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`PORT`
+`MONGO_URL`
+`JWT_SECRET_KEY`
+
 
 ## API Reference
 
@@ -57,42 +94,6 @@ GET /api/book
 ```http
 GET /api/book/:id
 ```
-## Environment Variables
-
-To run this project, you will need to add the following environment variables to your .env file
-
-`PORT`
-`MONGO_URL`
-`JWT_SECRET_KEY`
-
-
-## Run Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/kirti136/kriscent_assignment.git
-```
-
-Go to the project directory
-
-```bash
-  cd backend
-```
-
-Install dependencies
-
-```bash
-  npm install
-```
-
-Start the server
-
-```bash
-  npm run start or npm start
-```
-
-
 ## Tech Stack
 
 - **Node.js**: JavaScript runtime for server-side programming.
