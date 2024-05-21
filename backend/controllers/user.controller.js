@@ -35,10 +35,7 @@ exports.register = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({
-      success: false,
-      message: "Error Registering User",
-    });
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
 
@@ -82,7 +79,7 @@ exports.login = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, message: "Error Logging User" });
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
 
@@ -96,7 +93,7 @@ exports.logout = (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, message: "Cannot Logout User" });
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
 
@@ -106,8 +103,6 @@ exports.getAllUsers = async (req, res) => {
     res.status(200).json({ success: true, data: users });
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({ success: false, message: "Error getting User data" });
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
