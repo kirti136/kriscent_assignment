@@ -13,7 +13,7 @@ exports.validate = (req, res, next) => {
     });
 
     return res.status(400).json({
-      success: true,
+      success: false,
       message: "Validation failed",
       errors: formattedErrors,
     });
@@ -56,32 +56,15 @@ exports.loginValidationRules = () => {
   ];
 };
 
-exports.createBookingValidationRules = () => {
+exports.createBookValidationRules = () => {
   return [
-    body("date")
-      .exists()
-      .withMessage("Date is required")
-      .isDate()
-      .withMessage("Invalid date format"),
-    body("startTime")
-      .exists()
-      .withMessage("Start time is required")
-      .isString()
-      .withMessage("Start time must be a string"),
-    body("endTime")
-      .exists()
-      .withMessage("End time is required")
-      .isString()
-      .withMessage("End time must be a string"),
-    body("location")
-      .exists()
-      .withMessage("Location is required")
-      .isString()
-      .withMessage("Location must be a string"),
-    body("price")
-      .exists()
-      .withMessage("Price is required")
-      .isDecimal()
-      .withMessage("Invalid price format"),
+    body("title").notEmpty().withMessage("Title is required"),
+    body("author").notEmpty().withMessage("Author is required"),
+    body("coverPage").notEmpty().withMessage("Cover page URL is required"),
+    body("year")
+      .notEmpty()
+      .withMessage("Year is required")
+      .isInt({ min: 1000, max: new Date().getFullYear() })
+      .withMessage("Invalid year"),
   ];
 };

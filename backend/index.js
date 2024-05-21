@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use("/api/user", routes.userRouter);
+app.use("/api/book", routes.bookRouter);
 
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Welcome to Kriscent" });
