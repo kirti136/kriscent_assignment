@@ -3,6 +3,11 @@
 
 This is the backend API for the Kriscent Assignment. It provides routes for user authentication, authorization, and book management. The project uses Node.js, Express, Mongoose, JWT, and Swagger for API documentation.
 
+## Demo Video and Postman Data
+
+ - [Demo Video](https://drive.google.com/file/d/1H0nnJiNiWfXqdH7soxwjDUf1q2SS9Nyz/view?usp=drive_link)
+ - [Postman Data](https://drive.google.com/file/d/1CFR-nJ61t7YGO3e3j9eEECKyN_5mbkP2/view?usp=drive_link)
+
 ## Run Locally
 
 Clone the project
